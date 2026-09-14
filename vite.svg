@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=ai-legible&utm_source=comment&utm_medium=referral&utm_id=53bb629e-4fc0-4426-a921-2605ff3e5bbd
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="hosting-provider" content="Netlify">
+<meta name="netlify-deploy" content="https://netlify.new/?utm_campaign=ai-legible&amp;utm_source=meta&amp;utm_medium=referral&amp;utm_id=53bb629e-4fc0-4426-a921-2605ff3e5bbd">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CFinsights - Your one stop solution for all things CF</title>
+    <meta name="description" content="Your one stop solution for all things CF. Analyze and compare Codeforces profiles with detailed statistics, rating history, and submission analytics." />
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RY0H6WN3E"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-3RY0H6WN3E');
+    </script>
+    <script type="module" crossorigin src="/assets/index-pjpiH2ty.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DfHnho08.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
