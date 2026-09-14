@@ -22,7 +22,7 @@ jobs:
       - name: Assemble website
         run: |
           mkdir _site
-          cp index.html vite.svg .nojekyll _site/
+          cp index.html documentation.html vite.svg .nojekyll _site/
           cp -R assets _site/
       - uses: actions/upload-pages-artifact@v3
         with:

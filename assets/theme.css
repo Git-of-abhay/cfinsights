@@ -91,3 +91,53 @@ footer a:hover { color: var(--accent) !important; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Progressive UI enhancements */
+.cf-examples { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:12px; color:var(--muted); font-size:12px; }
+.cf-examples button, .cf-range button { border:1px solid var(--line); border-radius:999px; padding:5px 10px; color:var(--muted); background:var(--surface); font-weight:700; transition:border-color .2s,color .2s,background-color .2s; }
+.cf-examples button:hover, .cf-range button:hover, .cf-range button.active { border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
+.cf-chart-frame { position:relative; opacity:0; transform:translateY(12px); transition:opacity .55s ease,transform .55s ease; }
+.cf-chart-frame::after { content:""; position:absolute; inset:8px; border:1px solid transparent; border-radius:12px; pointer-events:none; transition:border-color .2s; }
+.cf-chart-frame.cf-visible { opacity:1; transform:none; }
+.cf-chart-frame:hover::after { border-color:var(--line); }
+.cf-chart-frame canvas { transition:filter .25s ease; }
+.cf-chart-frame:hover canvas { filter:saturate(1.08); }
+.cf-heatmap-card { position:relative; }
+.cf-heatmap-tools { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin:12px 0 4px; padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:var(--muted-surface); }
+.cf-range { display:flex; gap:6px; }
+.cf-heatmap-tools output { min-height:18px; color:var(--muted); font-size:12px; }
+.cf-heat-cell { animation:cf-cell-in .35s both; animation-delay:var(--cell-delay); outline:none; }
+.cf-heat-cell:hover, .cf-heat-cell:focus-visible { transform:scale(1.45) !important; z-index:10; border-color:var(--accent) !important; box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--accent); }
+.cf-heat-cell.cf-out-of-range { opacity:.15; }
+@keyframes cf-cell-in { from { opacity:0; transform:scale(.4); } to { opacity:1; transform:scale(1); } }
+.cf-doc-link { display:grid; grid-template-columns:24px 1fr 20px; align-items:center; gap:12px; margin:16px 0; padding:14px 16px; border:1px solid var(--line); border-radius:12px; background:var(--accent-soft); color:var(--ink); text-decoration:none; transition:border-color .2s,transform .2s; }
+.cf-doc-link:hover { border-color:var(--accent); transform:translateY(-1px); }
+.cf-doc-link svg { width:22px; color:var(--accent); }
+.cf-doc-link span { display:flex; flex-direction:column; gap:2px; }
+.cf-doc-link small { color:var(--muted); font-size:12px; font-weight:500; }
+.cf-tutor-launcher { position:fixed; right:22px; bottom:22px; z-index:45; display:flex; align-items:center; gap:8px; padding:11px 16px; border-radius:999px; background:#0f766e; color:#fff; box-shadow:0 8px 24px rgb(15 118 110 / 22%); font-weight:800; letter-spacing:.01em; }
+.cf-tutor-launcher:hover { background:#115e59; transform:translateY(-2px); }
+.cf-tutor-launcher svg { width:20px; height:20px; }
+.cf-tutor-card { position:fixed; right:22px; bottom:82px; z-index:60; width:min(380px,calc(100vw - 32px)); overflow:hidden; padding:24px; border:1px solid var(--line); border-radius:16px; background:var(--surface); color:var(--ink); box-shadow:0 18px 60px rgb(15 23 42 / 20%); animation:cf-tutor-in .25s ease-out; }
+.cf-tutor-progress { position:absolute; inset:0 0 auto; height:3px; background:var(--muted-surface); }
+.cf-tutor-progress span { display:block; height:100%; background:var(--accent); transition:width .25s ease; }
+.cf-tutor-close { position:absolute; top:14px; right:14px; width:32px; height:32px; display:grid; place-items:center; border-radius:8px; color:var(--muted); background:transparent; }
+.cf-tutor-close:hover { background:var(--muted-surface); color:var(--ink); }
+.cf-tutor-close svg { width:18px; }
+.cf-tutor-eyebrow { margin:0 40px 8px 0; color:var(--accent); font-size:11px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+.cf-tutor-card h2 { margin:0 32px 8px 0; color:var(--ink); font-size:20px; line-height:1.25; }
+.cf-tutor-copy, .cf-tutor-note { margin:0; color:var(--muted); font-size:14px; line-height:1.65; }
+.cf-tutor-note { margin-top:10px; padding:9px 10px; border-radius:8px; background:var(--accent-soft); color:var(--accent); font-size:12px; font-weight:650; }
+.cf-tutor-actions { display:flex; justify-content:space-between; margin-top:20px; }
+.cf-tutor-actions button { min-width:80px; padding:9px 13px; border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--ink); font-weight:750; }
+.cf-tutor-actions button:disabled { opacity:.35; }
+.cf-tutor-actions [data-tour-next] { display:flex; align-items:center; gap:6px; border-color:#0f766e; background:#0f766e; color:#fff; }
+.cf-tutor-actions svg { width:16px; }
+.cf-tour-target { position:relative; z-index:55 !important; outline:3px solid var(--accent) !important; outline-offset:5px; border-radius:9px; box-shadow:0 0 0 9999px rgb(15 23 42 / 30%) !important; }
+@keyframes cf-tutor-in { from { opacity:0; transform:translateY(12px) scale(.98); } to { opacity:1; transform:none; } }
+@media (max-width:640px) {
+  .cf-tutor-launcher { right:16px; bottom:16px; padding:10px 13px; }
+  .cf-tutor-card { right:16px; bottom:70px; padding:20px; }
+  .cf-heatmap-tools { align-items:flex-start; }
+  .cf-heatmap-tools output { width:100%; }
+}

@@ -4,6 +4,15 @@ Live site: https://git-of-abhay.github.io/cfinsights/
 
 The custom `assets/theme.css` adds a solid slate and teal palette, with light and dark modes, restrained shadows, and no CSS gradients. Edit this file to adjust the theme independently of the compiled application.
 
+## Experience enhancements
+
+- Animated chart entrances with accessible chart labels
+- An interactive 365-day heatmap with 30-day, 90-day, and one-year focus controls
+- Example handles for faster onboarding
+- A contextual Tutor that guides users through the landing page and every dashboard tab
+- A responsive browser-based product guide at `/documentation.html`
+- Keyboard support: press `?` to open Tutor and `Escape` to close it
+
 A standalone static copy of https://cfinsights.netlify.app, captured on 2026-09-14, prepared for GitHub Pages. No login, passwords, API keys, or backend setup required.
 
 ## Run locally
