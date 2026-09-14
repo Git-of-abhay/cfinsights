@@ -4,7 +4,9 @@ Thank you for helping! Star the repository if the dashboard is useful, report a 
 
 ## Release status
 
-The repository is public, but the original application's redistribution permission and project license have not yet been established. The core application is a copied browser distribution, not its original source tree. Do not assume that a public repository grants an open-source license. Licensing is a release blocker; please discuss substantial code contributions in an issue first.
+CFInsights is released by its creator Abhay (Git-of-abhay) under the [MIT License](LICENSE). Bundled dependencies retain their respective licenses in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Contributions are welcome. By submitting a contribution, you agree to license your original contribution under MIT and confirm that you have the right to submit it.
+
+The core application is currently a deployed browser bundle rather than its original source tree. Restoring a reproducible build and addressing the reviewed security findings are priorities. Please discuss substantial changes in an issue first.
 
 ## Get help or report an issue
 

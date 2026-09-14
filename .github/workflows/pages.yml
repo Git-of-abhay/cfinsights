@@ -23,6 +23,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html documentation.html vite.svg .nojekyll _site/
+          cp LICENSE THIRD_PARTY_NOTICES.md _site/
           cp -R assets _site/
       - uses: actions/upload-pages-artifact@v3
         with:

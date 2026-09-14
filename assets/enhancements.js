@@ -165,6 +165,13 @@ function addCommunityLinks() {
   section.className = 'cf-community';
   section.setAttribute('aria-label', 'CFInsights community');
   section.innerHTML = '<h2>Help make CFInsights better</h2><p>Finding this useful? Please star the repository. Bug reports, feature ideas, and contributions are welcome.</p><div class="cf-community-links"><a href="https://github.com/Git-of-abhay/cfinsights" target="_blank" rel="noopener noreferrer">☆ Star on GitHub</a><a href="https://github.com/Git-of-abhay/cfinsights/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribute</a><a href="https://github.com/Git-of-abhay/cfinsights/issues" target="_blank" rel="noopener noreferrer">Get help / report a bug</a></div><small>Please keep passwords and private information out of public issues.</small>';
+  q('p', section).textContent = 'CFInsights is open source under MIT. Finding this useful? Please star the repository. Bug reports, feature ideas, and contributions are welcome.';
+  const licenseLink = document.createElement('a');
+  licenseLink.href = 'https://github.com/Git-of-abhay/cfinsights/blob/main/LICENSE';
+  licenseLink.textContent = 'MIT License';
+  licenseLink.target = '_blank';
+  licenseLink.rel = 'noopener noreferrer';
+  q('.cf-community-links', section).append(licenseLink);
   footer.prepend(section);
 }
 

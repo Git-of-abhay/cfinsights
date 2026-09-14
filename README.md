@@ -1,5 +1,9 @@
 # CFinsights
 
+CFInsights is open source under the [MIT License](LICENSE), released by its creator Abhay (Git-of-abhay). Stars, bug reports, and contributions are welcome—see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Bundled libraries retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The repository currently includes the deployed application bundle and readable enhancement modules. Restoring the original source/build pipeline and resolving the reviewed security findings remain outstanding; this licensing announcement is not security approval.
+
 Live site: https://git-of-abhay.github.io/cfinsights/
 
 The custom `assets/theme.css` adds a solid slate and teal palette, with light and dark modes, restrained shadows, and no CSS gradients. Edit this file to adjust the theme independently of the compiled application.
