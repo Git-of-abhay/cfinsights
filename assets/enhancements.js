@@ -158,6 +158,16 @@ function balancePanels() {
   });
 }
 
+function addCommunityLinks() {
+  const footer = q('footer');
+  if (!footer || q('.cf-community', footer)) return;
+  const section = document.createElement('section');
+  section.className = 'cf-community';
+  section.setAttribute('aria-label', 'CFInsights community');
+  section.innerHTML = '<h2>Help make CFInsights better</h2><p>Finding this useful? Please star the repository. Bug reports, feature ideas, and contributions are welcome.</p><div class="cf-community-links"><a href="https://github.com/Git-of-abhay/cfinsights" target="_blank" rel="noopener noreferrer">☆ Star on GitHub</a><a href="https://github.com/Git-of-abhay/cfinsights/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribute</a><a href="https://github.com/Git-of-abhay/cfinsights/issues" target="_blank" rel="noopener noreferrer">Get help / report a bug</a></div><small>Please keep passwords and private information out of public issues.</small>';
+  footer.prepend(section);
+}
+
 const steps = [
   { title: 'Welcome to CFinsights', body: 'This guided tour stays with you as you explore. You can close it at any time and restart from the Tutor button.', target: () => q('h1') },
   { title: 'Start with a handle', body: 'Enter any public Codeforces handle. The example chips can fill one instantly.', target: () => q('input[type="text"]') },
@@ -274,6 +284,7 @@ function enhance() {
     enhanceHeatmap();
     enhanceDocumentation();
     mountTutor();
+    addCommunityLinks();
     window.setTimeout(balancePanels, 240);
   });
 }
