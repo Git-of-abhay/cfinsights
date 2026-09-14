@@ -68,6 +68,8 @@ button[class*="bg-gradient"], [class*="bg-gradient"].text-white {
   border-color: transparent !important;
 }
 button[class*="bg-gradient"]:hover:not(:disabled) { background-color: #115e59 !important; }
+[class*="bg-gradient"]:has(> svg.text-white) { background-color: #0f766e !important; }
+.dark button[class*="bg-gray-100"] { color: var(--ink) !important; }
 button .absolute[class*="bg-gradient"], .pointer-events-none[class*="bg-gradient"] {
   background: none !important;
 }
