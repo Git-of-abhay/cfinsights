@@ -4,6 +4,26 @@ const q = (selector, root = document) => root.querySelector(selector);
 const qa = (selector, root = document) => [...root.querySelectorAll(selector)];
 const exactText = (selector, text) => qa(selector).find((node) => node.textContent.trim() === text);
 
+function track(eventName, parameters = {}) {
+  if (typeof window.gtag === 'function') window.gtag('event', eventName, parameters);
+}
+
+function mountAnalyticsEvents() {
+  if (document.documentElement.dataset.cfAnalyticsEvents) return;
+  document.documentElement.dataset.cfAnalyticsEvents = 'true';
+  document.addEventListener('click', (event) => {
+    const control = event.target.closest('button, a');
+    if (!control) return;
+    const label = control.textContent.trim();
+    if (label === 'Analyze Profiles') track('analyze_profiles', { profile_count: qa('input[type="text"]').length });
+    else if (label === 'Enable Compare Mode' || label === 'Compare Mode Active') track('compare_mode_toggle');
+    else if (['Overview', 'Analytics', 'Practice', 'Insights', 'Tools', 'Verdict Comparison', 'Problems', 'Progress', 'After X Contests'].includes(label)) track('dashboard_tab', { tab_name: label });
+    else if (control.matches('[data-days]')) track('heatmap_range', { days: Number(control.dataset.days) });
+    else if (control.id === 'cf-tutor-launcher') track('tutor_open');
+    else if (control.closest('.cf-community-links')) track('community_link', { action: label });
+  });
+}
+
 function removeAlphaAccess() {
   qa('button').filter((button) => /^(Alpha AccessAlpha|Alpha Access|Alpha)$/.test(button.textContent.trim())).forEach((button) => button.remove());
   q('button[aria-label="Toggle dark mode"]')?.classList.add('cf-theme-toggle');
@@ -292,6 +312,7 @@ function enhance() {
     enhanceDocumentation();
     mountTutor();
     addCommunityLinks();
+    mountAnalyticsEvents();
     window.setTimeout(balancePanels, 240);
   });
 }

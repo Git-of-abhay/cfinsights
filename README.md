@@ -38,8 +38,8 @@ The GitHub Actions workflow publishes the website on every push to `main`. GitHu
 
 - The original public browser JavaScript and CSS, preserving the interface, profile analysis, comparisons, charts, upcoming contests, light/dark mode, and responsive layout.
 - Relative asset URLs so the site works under a GitHub Pages repository path.
-- A clean HTML entrypoint without the original Google Analytics scripts or Netlify hosting metadata.
+- Clean HTML entrypoints without Netlify hosting metadata. Google Analytics uses measurement ID `G-3RY0H6WN3E` on the dashboard and product guide.
 
 This is a copy of the deployed browser distribution, not the original React/TypeScript source repository. `assets/app.js` and `assets/app.css` are the original compiled assets. Third-party notices embedded in the bundle are retained. Original author attribution and outbound links are preserved. The Alpha dialog is the original informational announcement; it does not provide authentication or implement the announced future features.
 
-Data is fetched directly from the public Codeforces API. Its availability and rate limits still apply. The original browser bundle stores the theme preference in local storage and loads profile avatars from Codeforces or ui-avatars.com.
+Data is fetched directly from the public Codeforces API. Its availability and rate limits still apply. The browser stores the theme preference and Tutor completion state in local storage, loads profile avatars from Codeforces or ui-avatars.com, and sends page views and selected interface events to Google Analytics. Custom analytics events do not include Codeforces handles.

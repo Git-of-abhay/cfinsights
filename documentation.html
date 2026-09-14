@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="CFinsights product guide: profiles, comparisons, analytics, practice, insights, scoring, privacy, and troubleshooting." />
   <title>CFinsights Product Guide</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3RY0H6WN3E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3RY0H6WN3E', { anonymize_ip: true });
+  </script>
   <link rel="icon" type="image/png" href="./assets/cfinsights-logo.png" />
   <link rel="stylesheet" href="./assets/theme.css" />
   <style>
@@ -27,7 +34,7 @@
         <section class="section" id="compare"><p class="eyebrow">06 · Compare</p><h2>Profile comparison</h2><p>Compare Mode loads two profiles and aligns ratings, solve counts, verdicts, topics, and progress. Use it to understand different strengths or learning paths. Raw totals can reflect account age, so compare rates and progression alongside totals.</p></section>
         <section class="section" id="score"><p class="eyebrow">07 · Score</p><h2>CFinsights profile score</h2><p>The score combines eleven profile metrics and adjusts their weights by rating tier. This keeps the focus appropriate: early tiers reward fundamentals and consistency, while advanced tiers place more emphasis on contest performance and difficult solves.</p><p><strong>Total score = sum of each metric score multiplied by its tier weight.</strong> Open “View Calculation Breakdown” on a profile to see the exact contribution. The star rating is the total score divided by 20.</p></section>
         <section class="section" id="tutor"><p class="eyebrow">08 · Learn</p><h2>Guided tutor</h2><p>Select the fixed <strong>Tutor</strong> button to start a contextual walkthrough. Before analysis it explains Search and Compare. After a profile loads, restart it to tour every dashboard tab and highlight the relevant panel. Press <kbd>?</kbd> to open it and <kbd>Esc</kbd> to close it.</p></section>
-        <section class="section" id="privacy"><p class="eyebrow">09 · Trust</p><h2>Data and privacy</h2><p>Profile, rating, contest, blog, and submission data comes directly from the public Codeforces API. The app stores only your light/dark theme preference and tutor completion state in local browser storage. It includes no login flow and no analytics tracker.</p></section>
+        <section class="section" id="privacy"><p class="eyebrow">09 · Trust</p><h2>Data and privacy</h2><p>Profile, rating, contest, blog, and submission data comes directly from the public Codeforces API. The app stores your light/dark theme preference and tutor completion state in local browser storage. It includes no login flow. Google Analytics measures page views and interface actions such as opening Tutor or selecting a dashboard tab with measurement ID <code>G-3RY0H6WN3E</code>; Codeforces handles are not included in custom events, and IP anonymization is requested in its configuration.</p></section>
         <section class="section" id="troubleshooting"><p class="eyebrow">10 · Help</p><h2>Troubleshooting</h2><h3>Handle not found</h3><p>Check spelling and remove spaces. Handles are public identifiers.</p><h3>Too many requests</h3><p>Codeforces rate limits repeated API calls. Wait briefly, then use Try Again.</p><h3>Some panels are empty</h3><p>New or inactive profiles may not have rating, contest, or submission history for every metric.</p><h3>Charts appear compressed</h3><p>Refresh after resizing the browser. The charts recalculate against their container width.</p></section>
       </article>
     </div>
