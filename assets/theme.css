@@ -94,9 +94,14 @@ footer a:hover { color: var(--accent) !important; }
 
 /* Progressive UI enhancements */
 .cf-examples { display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:12px; color:var(--muted); font-size:12px; }
+.cf-brand-hidden { display:none !important; }
+.cf-visually-hidden { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+.cf-brand-logo { display:block; width:min(470px,88%); height:auto; margin:0 auto 10px; object-fit:contain; }
+.cf-theme-toggle { margin-left:auto; }
+.dark .cf-brand-logo { padding:8px 12px; border-radius:12px; background-color:#fff; }
 .cf-examples button, .cf-range button { border:1px solid var(--line); border-radius:999px; padding:5px 10px; color:var(--muted); background:var(--surface); font-weight:700; transition:border-color .2s,color .2s,background-color .2s; }
 .cf-examples button:hover, .cf-range button:hover, .cf-range button.active { border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
-.cf-chart-frame { position:relative; opacity:0; transform:translateY(12px); transition:opacity .55s ease,transform .55s ease; }
+.cf-chart-frame { position:relative; opacity:1; transform:none; animation:cf-chart-rise .55s ease-out both; }
 .cf-chart-frame::after { content:""; position:absolute; inset:8px; border:1px solid transparent; border-radius:12px; pointer-events:none; transition:border-color .2s; }
 .cf-chart-frame.cf-visible { opacity:1; transform:none; }
 .cf-chart-frame:hover::after { border-color:var(--line); }
@@ -110,6 +115,7 @@ footer a:hover { color: var(--accent) !important; }
 .cf-heat-cell:hover, .cf-heat-cell:focus-visible { transform:scale(1.45) !important; z-index:10; border-color:var(--accent) !important; box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--accent); }
 .cf-heat-cell.cf-out-of-range { opacity:.15; }
 @keyframes cf-cell-in { from { opacity:0; transform:scale(.4); } to { opacity:1; transform:scale(1); } }
+@keyframes cf-chart-rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
 .cf-doc-link { display:grid; grid-template-columns:24px 1fr 20px; align-items:center; gap:12px; margin:16px 0; padding:14px 16px; border:1px solid var(--line); border-radius:12px; background:var(--accent-soft); color:var(--ink); text-decoration:none; transition:border-color .2s,transform .2s; }
 .cf-doc-link:hover { border-color:var(--accent); transform:translateY(-1px); }
 .cf-doc-link svg { width:22px; color:var(--accent); }
@@ -134,10 +140,21 @@ footer a:hover { color: var(--accent) !important; }
 .cf-tutor-actions [data-tour-next] { display:flex; align-items:center; gap:6px; border-color:#0f766e; background:#0f766e; color:#fff; }
 .cf-tutor-actions svg { width:16px; }
 .cf-tour-target { position:relative; z-index:55 !important; outline:3px solid var(--accent) !important; outline-offset:5px; border-radius:9px; box-shadow:0 0 0 9999px rgb(15 23 42 / 30%) !important; }
+.cf-balanced-grid { align-items:start !important; }
+.cf-balanced-panel { height:var(--cf-panel-height); min-height:0; }
+.cf-scroll-panel { overflow-y:auto; overscroll-behavior:contain; scrollbar-gutter:stable; scrollbar-width:thin; scrollbar-color:var(--accent) var(--muted-surface); }
+.cf-scroll-panel::-webkit-scrollbar { width:9px; }
+.cf-scroll-panel::-webkit-scrollbar-track { background:var(--muted-surface); border-radius:999px; }
+.cf-scroll-panel::-webkit-scrollbar-thumb { background:var(--accent); border:2px solid var(--muted-surface); border-radius:999px; }
 @keyframes cf-tutor-in { from { opacity:0; transform:translateY(12px) scale(.98); } to { opacity:1; transform:none; } }
 @media (max-width:640px) {
+  .cf-brand-logo { width:100%; margin-bottom:8px; }
   .cf-tutor-launcher { right:16px; bottom:16px; padding:10px 13px; }
   .cf-tutor-card { right:16px; bottom:70px; padding:20px; }
   .cf-heatmap-tools { align-items:flex-start; }
   .cf-heatmap-tools output { width:100%; }
+}
+@media (max-width:1023px) {
+  .cf-balanced-panel { height:auto !important; }
+  .cf-scroll-panel { overflow:visible; }
 }

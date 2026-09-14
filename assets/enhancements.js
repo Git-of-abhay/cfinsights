@@ -1,6 +1,27 @@
+import { cleanLogoBackground } from './logo.js';
+
 const q = (selector, root = document) => root.querySelector(selector);
 const qa = (selector, root = document) => [...root.querySelectorAll(selector)];
 const exactText = (selector, text) => qa(selector).find((node) => node.textContent.trim() === text);
+
+function removeAlphaAccess() {
+  qa('button').filter((button) => /^(Alpha AccessAlpha|Alpha Access|Alpha)$/.test(button.textContent.trim())).forEach((button) => button.remove());
+  q('button[aria-label="Toggle dark mode"]')?.classList.add('cf-theme-toggle');
+}
+
+function enhanceBrand() {
+  const heading = qa('h1').find((node) => node.textContent.trim() === 'CFinsights');
+  if (!heading || q('.cf-brand-logo')) return;
+  const oldMark = heading.previousElementSibling;
+  oldMark?.classList.add('cf-brand-hidden');
+  heading.classList.add('cf-visually-hidden');
+  const logo = document.createElement('img');
+  logo.src = new URL('./cfinsights-logo.png', import.meta.url).href;
+  logo.alt = 'CFInsights';
+  logo.className = 'cf-brand-logo';
+  heading.before(logo);
+  cleanLogoBackground(logo);
+}
 
 const icon = (name) => {
   const paths = {
@@ -110,6 +131,33 @@ function enhanceDocumentation() {
   heading.parentElement.after(link);
 }
 
+function balancePanels() {
+  if (window.innerWidth < 1024) return;
+  qa('.grid').forEach((grid) => {
+    if (grid.dataset.cfBalanced) return;
+    const columns = [...grid.children].filter((child) => child.tagName === 'DIV');
+    if (columns.length !== 2) return;
+    const panels = columns.map((column) => column.matches('[class*="rounded-xl"], [class*="rounded-2xl"]') ? column : q('[class*="rounded-xl"], [class*="rounded-2xl"]', column));
+    if (panels.some((panel) => !panel)) return;
+    const [first, second] = panels;
+    const firstHeight = first.getBoundingClientRect().height;
+    const secondHeight = second.getBoundingClientRect().height;
+    const difference = Math.abs(firstHeight - secondHeight);
+    if (difference < 110 || Math.max(firstHeight, secondHeight) < 500) return;
+    const height = Math.round(Math.max(390, Math.min(Math.min(firstHeight, secondHeight), 580)));
+    grid.dataset.cfBalanced = 'true';
+    grid.classList.add('cf-balanced-grid');
+    panels.forEach((panel) => {
+      panel.classList.add('cf-balanced-panel');
+      panel.style.setProperty('--cf-panel-height', `${height}px`);
+    });
+    const scrollPanel = firstHeight > secondHeight ? first : second;
+    scrollPanel.classList.add('cf-scroll-panel');
+    scrollPanel.tabIndex = 0;
+    scrollPanel.setAttribute('aria-label', `${scrollPanel.querySelector('h2, h3, h4')?.textContent.trim() || 'Long panel'}; scroll for more content`);
+  });
+}
+
 const steps = [
   { title: 'Welcome to CFinsights', body: 'This guided tour stays with you as you explore. You can close it at any time and restart from the Tutor button.', target: () => q('h1') },
   { title: 'Start with a handle', body: 'Enter any public Codeforces handle. The example chips can fill one instantly.', target: () => q('input[type="text"]') },
@@ -122,13 +170,24 @@ const steps = [
   { title: 'Learn every feature', body: 'Tools includes the complete documentation. The new browser guide is easier to search and read alongside the dashboard.', target: () => exactText('button', 'Tools'), tab: 'Tools', follow: 'Complete Feature Documentation' },
 ];
 
+const compareSteps = [
+  { title: 'Comparison workspace', body: 'Compare Mode keeps both profiles in one workspace and aligns each metric so differences are easy to scan.', target: () => findFollowTarget('Profile Comparison') },
+  { title: 'Profiles at a glance', body: 'The two profile summaries keep identity, current rating, maximum rating, location, and account history together.', target: () => findFollowTarget('vs') || findFollowTarget('Profile Comparison') },
+  { title: 'Overall performance', body: 'Overview compares rating progress, contest volume, solve count, acceptance rate, growth, and rank. Use rates as well as totals when account ages differ.', target: () => exactText('button', 'Overview'), tab: 'Overview', follow: 'Detailed Statistics Comparison' },
+  { title: 'Verdict patterns', body: 'Verdict Comparison reveals where each user succeeds or loses submissions across accepted, wrong answer, time, runtime, and compilation outcomes.', target: () => exactText('button', 'Verdict Comparison'), tab: 'Verdict Comparison' },
+  { title: 'Problem strengths', body: 'Problems compares solved difficulty and topic coverage. It helps identify complementary strengths instead of relying on rating alone.', target: () => exactText('button', 'Problems'), tab: 'Problems' },
+  { title: 'Progress over time', body: 'Progress aligns rating and solving development over time so you can see momentum, plateaus, and recent direction.', target: () => exactText('button', 'Progress'), tab: 'Progress' },
+  { title: 'Fair contest checkpoint', body: 'After X Contests compares both users at the same contest count, reducing the distortion caused by different account ages.', target: () => exactText('button', 'After X Contests'), tab: 'After X Contests', follow: 'After X Contests Analysis' },
+];
+
 let tourIndex = 0;
 let activeSteps = [];
 let priorTarget = null;
 let tourTimer = null;
 
 function resolveTourSteps() {
-  return exactText('button', 'Overview') ? steps : steps.slice(0, 4);
+  if (exactText('button', 'Verdict Comparison')) return compareSteps;
+  return exactText('button', 'Analytics') ? steps : steps.slice(0, 4);
 }
 
 function findFollowTarget(text) {
@@ -209,12 +268,20 @@ function enhance() {
   requestAnimationFrame(() => {
     queued = false;
     enhanceSearch();
+    removeAlphaAccess();
+    enhanceBrand();
     enhanceCharts();
     enhanceHeatmap();
     enhanceDocumentation();
     mountTutor();
+    window.setTimeout(balancePanels, 240);
   });
 }
 
 new MutationObserver(enhance).observe(q('#root'), { childList: true, subtree: true });
+let resizeTimer;
+window.addEventListener('resize', () => {
+  window.clearTimeout(resizeTimer);
+  resizeTimer = window.setTimeout(balancePanels, 180);
+});
 enhance();

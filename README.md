@@ -12,6 +12,9 @@ The custom `assets/theme.css` adds a solid slate and teal palette, with light an
 - A contextual Tutor that guides users through the landing page and every dashboard tab
 - A responsive browser-based product guide at `/documentation.html`
 - Keyboard support: press `?` to open Tutor and `Escape` to close it
+- A dedicated seven-step Tutor path for Compare Mode
+- Balanced two-column panels with contained scrolling for long content
+- The supplied CFInsights logo across the dashboard, guide, and browser tab
 
 A standalone static copy of https://cfinsights.netlify.app, captured on 2026-09-14, prepared for GitHub Pages. No login, passwords, API keys, or backend setup required.
 
